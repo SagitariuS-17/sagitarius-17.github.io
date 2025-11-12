@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CM-Labs | Desarrollo de aplicaciones</title>
+
+  <!-- Añadir Font Awesome CDN para iconos -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-p1CmZCvmRjnH7iGZlr/wS6CZkQtzpc+7AlR+ytlgU6BVGx8OTdrqIMLrdmGf1F0kEnk92oDdf9K8RDY5Gx9F4g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <style>
+    body, h1, h2, p {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: #f8fafc;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 1rem 2rem;
+    }
+    header {
+      background: #007acc;
+      color: white;
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 1300px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      margin-bottom: 2rem;
+      border-radius: 0;
+      font-weight: 700;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    header i {
+      font-size: 2.4rem;
+      margin-right: 12px;
+      color: #fff;
+    }
+    main {
+      width: 100%;
+      max-width: 1300px;
+      display: flex;
+      gap: 2rem;
+      height: 680px;
+    }
+    .cards-container {
+      flex: 4;
+      background: white;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+      overflow-y: auto;       
+      overflow-x: hidden;     
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); 
+      grid-auto-rows: 320px;
+      gap: 1.5rem;
+      border-radius: 0;
+      border: none;
+      place-items: center;    
+      justify-content: center;
+      width: 100%;
+      max-width: 1200px;      
+      box-sizing: border-box;
+    }
+    .card {
+      background: #fff;
+      border-radius: 0;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1rem 1.2rem;
+      text-align: center;
+      transition: box-shadow 0.3s ease;
+      height: 100%;
+      max-width: 260px;
+      box-sizing: border-box;
+      position: relative;
+      min-height: 320px;
+    }
+    .card:hover {
+      box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+    }
+    .app-image {
+      width: 160px;
+      height: 120px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+      border: 3px solid #007acc;
+      flex-shrink: 0;
+      background-color: #f0f4f8;
+    }
+    .app-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 0;
+    }
+    .app-info p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+      text-align: justify;
+      overflow-wrap: break-word;
+      overflow: hidden;
+    }
+    .btn-playstore {
+      background-color: #3bccff;
+      color: white;
+      font-weight: 600;
+      padding: 0.55rem 1.3rem;
+      border-radius: 0;
+      box-shadow: none;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+      align-self: center;
+      border: 2px solid #3bccff;
+      width: 155px;
+      height: 40px;
+      max-width: 160px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .app-info h2 {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #007acc;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      overflow-wrap: break-word;
+    }
+    .app-info p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+      text-align: justify;
+      flex-grow: 1;
+      overflow-wrap: break-word;
+      overflow: auto;
+    }
+    .btn-playstore:hover {
+      background-color: #0a8dcc;
+      border-color: #0a8dcc;
+      box-shadow: none;
+    }
+    .contact-section {
+      flex: 1.5;
+      background: white;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      height: 680px;
+      overflow-y: auto;
+      border-radius: 0;
+      border: none;
+      box-sizing: border-box;
+    }
+    .contact-section h2 {
+      color: #007acc;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .contact-section p {
+      color: #555;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+    }
+    input, textarea {
+      padding: 0.9rem 1rem;
+      font-size: 1rem;
+      border-radius: 0;
+      border: 1.8px solid #ccc;
+      transition: border-color 0.3s ease;
+      resize: vertical;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #007acc;
+      box-shadow: none;
+    }
+    button {
+      background-color: #007acc;
+      color: white;
+      padding: 0.75rem 0;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 0;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+      display: block;
+    }
+    button:hover {
+      background-color: #005a99;
+    }
+    .ad-space {
+      margin-top: 1rem;
+      background: #e0e0e0;
+      color: #555;
+      font-size: 1rem;
+      text-align: center;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ccc;
+      user-select: none;
+    }
+    footer {
+      margin-top: 1rem;
+      width: 100%;
+      max-width: 1300px;
+      text-align: center;
+      color: white;
+      background: #007acc;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      box-shadow: 0 -3px 7px rgba(0,0,0,0.15);
+      border-radius: 0;
+    }
+    @media (max-width: 1100px) {
+      main {
+        flex-direction: column;
+        height: auto;
+      }
+      .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 320px;
+        max-width: 100%;
+      }
+    }
+    @media (max-width: 850px) {
+      main {
+        flex-direction: column;
+        height: auto;
+      }
+      .cards-container {
+        grid-template-columns: repeat(1, 1fr);
+        grid-auto-rows: auto;
+        max-width: 100%;
+      }
+      .contact-section {
+        height: auto;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <i class="fa-solid fa-cube"></i>
+    <h1>CM-Labs | Desarrollo de aplicaciones</h1>
+  </header>
+
+  <main>
+    <div class="cards-container">
+      <!-- Primeras 4 tarjetas -->
+      <article class="card app-card">
+        <div class="app-image">
+          <img src="https://github.com/SagitariuS-17/CM-Labs/blob/main/Img/SinImagen.jpg?raw=true" alt="Aplicación 1" />
+        </div>
+        <div class="app-info">
+          <h2>App 1</h2>
+          <p></p><!-- Colocar Descripción corta de la App -->
+          <a href="https://play.google.com/store/apps/details?id=com.tuempresa.miapp1"
+            class="btn-playstore" target="_blank" rel="noopener noreferrer">Ver en Play Store</a>
+        </div>
+      </article>
+      <article class="card app-card">
+        <div class="app-image">
+          <img src="https://github.com/SagitariuS-17/CM-Labs/blob/main/Img/SinImagen.jpg?raw=true" alt="Aplicación 2" />
+        </div>
+        <div class="app-info">
+          <h2>App 2</h2>
+          <p></p><!-- Colocar Descripción corta de la App -->
+          <a href="https://play.google.com/store/apps/details?id=com.tuempresa.miapp2"
+            class="btn-playstore" target="_blank" rel="noopener noreferrer">Ver en Play Store</a>
+        </div>
+      </article>
+      <article class="card app-card">
+        <div class="app-image">
+          <img src="https://github.com/SagitariuS-17/CM-Labs/blob/main/Img/SinImagen.jpg?raw=true" alt="Aplicación 3" />
+        </div>
+        <div class="app-info">
+          <h2>App 3</h2>
+          <p></p><!-- Colocar Descripción corta de la App -->
+          <a href="https://play.google.com/store/apps/details?id=com.tuempresa.miapp3"
+            class="btn-playstore" target="_blank" rel="noopener noreferrer">Ver en Play Store</a>
+        </div>
+      </article>
+      <article class="card app-card">
+        <div class="app-image">
+          <img src="https://github.com/SagitariuS-17/CM-Labs/blob/main/Img/SinImagen.jpg?raw=true" alt="Aplicación 4" />
+        </div>
+        <div class="app-info">
+          <h2>App 4</h2>
+          <p></p><!-- Colocar Descripción corta de la App -->
+          <a href="https://play.google.com/store/apps/details?id=com.tuempresa.miapp4"
+            class="btn-playstore" target="_blank" rel="noopener noreferrer">Ver en Play Store</a>
+        </div>
+      </article>
+      <!-- Nuevas 4 tarjetas debajo -->
+      <article class="card app-card">
+        <div class="app-image">
+          <img src="https://github.com/SagitariuS-17/CM-Labs/blob/main/Img/SinImagen.jpg?raw=true" alt="Aplicación 5" />
+        </div>
+        <div class="app-info">
+          <h2>App 5</h2>
+          <p></p><!-- Colocar Descripción corta de la App -->
+          <a href="https://play.google.com/store/apps/details?id=com.tuempresa.miapp5"
+            class="btn-playstore" target="_blank" rel="noopener noreferrer">Ver en Play Store</a>
+        </div>
+      </article>
+      <article class="card app-card">
+        <div class="app-image">
+          <img src="https://github.com/SagitariuS-17/CM-Labs/blob/main/Img/SinImagen.jpg?raw=true" alt="Aplicación 6" />
+        </div>
+        <div class="app-info">
+          <h2>App 6</h2>
+          <p></p><!-- Colocar Descripción corta de la App -->
+          <a href="https://play.google.com/store/apps/details?id=com.tuempresa.miapp6"
+            class="btn-playstore" target="_blank" rel="noopener noreferrer">Ver en Play Store</a>
+        </div>
+      </article>
+      <article class="card app-card">
+        <div class="app-image">
+          <img src="https://github.com/SagitariuS-17/CM-Labs/blob/main/Img/SinImagen.jpg?raw=true" alt="Aplicación 7" />
+        </div>
+        <div class="app-info">
+          <h2>App 7</h2>
+          <p></p><!-- Colocar Descripción corta de la App -->
+          <a href="https://play.google.com/store/apps/details?id=com.tuempresa.miapp7"
+            class="btn-playstore" target="_blank" rel="noopener noreferrer">Ver en Play Store</a>
+        </div>
+      </article>
+      <article class="card app-card">
+        <div class="app-image">
+          <img src="https://github.com/SagitariuS-17/CM-Labs/blob/main/Img/SinImagen.jpg?raw=true" alt="Aplicación 8" />
+        </div>
+        <div class="app-info">
+          <h2>App 8</h2>
+          <p></p><!-- Colocar Descripción corta de la App -->
+          <a href="https://play.google.com/store/apps/details?id=com.tuempresa.miapp8"
+            class="btn-playstore" target="_blank" rel="noopener noreferrer">Ver en Play Store</a>
+        </div>
+      </article>
+    </div>
+
+    <section class="contact-section" id="contacto">
+      <h2>Servicio al Cliente Zinko</h2>
+      <p>¿Quieres eliminar Cuenta y Datos?o ¿Te gustaría desarrollar una app personalizada? Contáctame.</p>
+      <form action="https://formspree.io/f/mqadgepn" method="POST">
+        <input type="text" name="nombre" placeholder="Tu nombre" required />
+        <input type="email" name="email" placeholder="Tu correo electrónico" required />
+        <textarea name="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+      <div class="ad-space">
+        Espacio publicitario o contenido adicional aquí.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 CM-Labs. Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>
